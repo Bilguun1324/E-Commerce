@@ -12,7 +12,7 @@ export const HomeScreen = () => {
     return (
         <SuperView flex={1} justifyContent='flex-start'>
             <SuperView width='90%' top='10%'>
-                <SuperText fontSize={24} width='100%' textAlign='left' color={Colors['orange']}>Бүгд: </SuperText>
+                <SuperText fontSize={24} width='100%' textAlign='left' color={Colors['orange']} height={40}>Бүгд: </SuperText>
                 <FlatList
                     data={col}
                     renderItem={({ item }) => <Card name={item.data().productname} price={item.data().productprice} id={item.id} />}
@@ -24,7 +24,7 @@ export const HomeScreen = () => {
             </SuperView>
             {data &&
                 <SuperView width='90%' top='15%'>
-                    <SuperText fontSize={24} width='100%' textAlign='left' color={Colors['orange']}>Урамшууллууд: </SuperText>
+                    <SuperText fontSize={24} width='100%' textAlign='left' color={Colors['orange']} height={40}>Урамшууллууд: </SuperText>
                     <FlatList
                         data={data.couponCollection.items}
                         renderItem={({ item }) => <CouponCard detail={item.detail} prize={item.prize} color={item.color} />}

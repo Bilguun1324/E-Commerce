@@ -4,3 +4,4 @@ export * from './basket-svg';
 export * from './create-svg';
 export * from './correct-svg';
 export * from './search-svg';
+export * from './minus-svg';

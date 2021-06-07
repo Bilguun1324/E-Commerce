@@ -7,7 +7,7 @@ import { useCol, useDoc } from '../hooks/firebase';
 import { useNavigation } from '@react-navigation/native';
 
 export const BasketScreen = () => {
-    const { basket } = useContext(BaskterContext);
+    const { setBasket, basket } = useContext(BaskterContext);
     const navigation = useNavigation();
     const { col } = useCol('/products/');
     const { user } = useAuth();
@@ -16,6 +16,7 @@ export const BasketScreen = () => {
 
     const buy = () => {
         updateDoc({ boughtHistory: basket });
+        setBasket([]);
         navigation.navigate('SuccessScreen', { text: 'you have successfully bought the product!!!' })
     }
 
@@ -29,7 +30,7 @@ export const BasketScreen = () => {
                             return col.map((product: any, index: number) =>
                                 basketProduct === product.id ?
                                     <SuperView width='50%' height={200} key={index}>
-                                        <Card name={product.data().productname} price={product.data().productprice} id={product.id} showIcon={false} />
+                                        <Card name={product.data().productname} price={product.data().productprice} id={product.id} tapped={true}/>
                                     </SuperView> : <SuperView key={index} />
                             )
                         })}

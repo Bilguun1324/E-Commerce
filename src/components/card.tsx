@@ -3,9 +3,9 @@ import { SuperView, SuperText, Colors, SuperImage, CreateSvg, SuperSpace, SuperT
 import storage from '@react-native-firebase/storage';
 import { BaskterContext } from '../provider';
 
-export const Card: React.FC<CardType> = ({ name, price, id, showIcon = true, tapped = false }) => {
+export const Card: React.FC<CardType> = ({ name, price, id, showIcon = true }) => {
     const { setBasket, basket } = useContext(BaskterContext);
-    const [touched, setTouched] = useState(tapped);
+    const [touched, setTouched] = useState(false);
     const [url, setUrl] = useState();
     useEffect(() => {
         storage().ref(`/products/${id}`).getDownloadURL().then((res: any) => setUrl(res));
@@ -44,11 +44,9 @@ export const Card: React.FC<CardType> = ({ name, price, id, showIcon = true, tap
                         </SuperTouchable>
                     </SuperSpace>
                     :
-                    <SuperSpace mb={10}>
-                        <SuperTouchable onPress={removeFromBasket}>
-                            <MinusSvg color={Colors['orange']} />
-                        </SuperTouchable>
-                    </SuperSpace> : <SuperView />
+                    <SuperTouchable onPress={removeFromBasket} width={15} height={15} justifyContent='center' alignItems='center'>
+                        <MinusSvg color={Colors['orange']} />
+                    </SuperTouchable> : <SuperView />
                 }
             </SuperView>
         </SuperView>
@@ -59,6 +57,5 @@ type CardType = {
     name: string,
     price: string,
     id: string,
-    tapped?: boolean,
     showIcon?: boolean,
 }

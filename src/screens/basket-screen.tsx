@@ -30,7 +30,7 @@ export const BasketScreen = () => {
                             return col.map((product: any, index: number) =>
                                 basketProduct === product.id ?
                                     <SuperView width='50%' height={200} key={index}>
-                                        <Card name={product.data().productname} price={product.data().productprice} id={product.id} tapped={true}/>
+                                        <Card name={product.data().productname} price={product.data().productprice} id={product.id}/>
                                     </SuperView> : <SuperView key={index} />
                             )
                         })}
